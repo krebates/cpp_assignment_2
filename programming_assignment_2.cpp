@@ -1,27 +1,52 @@
+
 #include <iostream>
+using std::cout;
+using std::endl;
+
 #include <fstream>
-#include <string>
+using std::ifstream;
 
-using namespace std;
+#include <cstring>
 
-int main(){
+const int MAX_CHARS_PER_LINE = 512;
+const int MAX_TOKENS_PER_LINE = 20;
+const char* const DELIMITER = " ";
 
-  ifstream inFile;
-  inFile.open("test2.txt");
+int main()
+{
+  // create a file-reading object
+  ifstream fin;
+  fin.open("test2.txt"); // open a file
+  if (!fin.good())
+    return 1; // exit if file not found
 
-  string item;
-  int count = 0;
+  // read each line of the file
+  while (!fin.eof())
+  {
+    // read an entire line into memory
+    char buf[MAX_CHARS_PER_LINE];
+    fin.getline(buf, MAX_CHARS_PER_LINE);
 
-  //Read a file until the end is reached
-  while(!inFile.eof()){
-    inFile >> item;
-    count++;
-    cout<<item<<endl;
+    // parse the line into blank-delimited tokens
+    int n = 0; // a for-loop index
+
+    // array to store memory addresses of the tokens in buf
+    const char* token[MAX_TOKENS_PER_LINE] = {}; // initialize to 0
+
+    // parse the line
+    token[0] = strtok(buf, DELIMITER); // first token
+    if (token[0]) // zero if line is blank
+    {
+      for (n = 1; n < MAX_TOKENS_PER_LINE; n++)
+      {
+        token[n] = strtok(0, DELIMITER); // subsequent tokens
+        if (!token[n]) break; // no more tokens
+      }
+    }
+
+    // process (print) the tokens
+    for (int i = 0; i < n; i++) // n = #of tokens
+      cout << "Token[" << i << "] = " << token[i] << endl;
+    cout << endl;
   }
-
-  cout << count << " items found."<<endl;
-
-  inFile.close();//After you finish reading, you have to close it.
-
-  return 0;
 }
