@@ -1,27 +1,39 @@
-#include <iostream>
-#include <fstream>
-#include <string>
-
-using namespace std;
+#include <sys/types.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 int main(){
+  int pipe_file_desc[2];
+  int process_id;
+  char buffer[20];
 
-  ifstream inFile;
-  inFile.open("test2.txt");
-
-  string item;
-  int count = 0;
-
-  //Read a file until the end is reached
-  while(!inFile.eof()){
-    inFile >> item;
-    count++;
-    cout<<item<<endl;
+  if(pipe(pipe_file_desc) == -1)
+  {
+    perror("error creating pipe");
+    exit(0);
   }
 
-  cout << count << " items found."<<endl;
+  process_id = fork();
+  if (process_id == -1)
+    {
+      perror ("error creating process using fork");
+      exit(0);
+  }
 
-  inFile.close();//After you finish reading, you have to close it.
+  if (process_id == 0)
+  {
+    close(pipe_file_desc[1]);
+    read(pipe_file_desc[0], buffer, 20);
+    printf("%s\n", buffer);
+    close(pipe_file_desc[0]);
+  }
 
-  return 0;
+  else
+  {
+    close(pipe_file_desc[0]);
+    write(pipe_file_desc[1], "hi", 20);
+    close (pipe_file_desc[1]);
+  }
+
 }
