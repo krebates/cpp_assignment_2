@@ -1,27 +1,29 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
-using namespace std;
+#include <sys/types.h>
+#include <stdio.h>
+#include <unistd.h>
 
 int main(){
 
-  ifstream inFile;
-  inFile.open("test2.txt");
+  int process_id;
 
-  string item;
-  int count = 0;
+  printf("hi\n");
+  process_id = fork();
+  fork();
 
-  //Read a file until the end is reached
-  while(!inFile.eof()){
-    inFile >> item;
-    count++;
-    cout<<item<<endl;
+  if (process_id == -1)
+  {
+    perror ("error creating");
+    exit(0);
   }
 
-  cout << count << " items found."<<endl;
-
-  inFile.close();//After you finish reading, you have to close it.
-
-  return 0;
+  if(process_id == 0)
+  {
+    printf("child\n");
+  }
+  else{
+    printf("parent\n");
+  }
 }
