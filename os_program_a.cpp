@@ -10,34 +10,25 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
 
-   //shows how arguments work
-   cout << "argc = " << argc << endl;
-   for(int i = 0; i < argc; i++)
-      cout << "argv[" << i << "] = " << argv[i] << endl;
+  int pipe_file_desc[2];
+  int process_id;
+  char buffer[20];
 
-
-
-  // int pipe_file_desc[2];
-  // int process_id;
-  // char buffer[20];
-
-
-  printf("%s", argv[1]);
   ifstream inFile;
   inFile.open(argv[1]);
 
-  // string item;
-  // int count = 0;
+  string item;
+  int count = 0;
 
-  // //Read a file until the end is reached
-  // while(!inFile.eof()){
-  //   inFile >> item;
-  //   count++;
-  //   cout<<item<<endl;
-  // }
+  //Read a file until the end is reached
+  while(!inFile.eof()){
+    inFile >> item;
+    count++;
+    cout<<item<<endl;
+  }
 
-  // cout << count << " items found."<<endl;
-
+  cout << count << " items found."<<endl;
+inFile.close();
 
 
 
