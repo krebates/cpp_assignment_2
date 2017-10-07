@@ -14,31 +14,38 @@ int main(int argc, char* argv[]) {
   int process_id;
   char buffer[20];
 
-  ifstream inFile;
-  inFile.open(argv[1]);
+  ifstream readText;
+  readText.open(argv[1]);
 
   // string item;
   // int count = 0;
   string word;
-
-  //Read a file until the end is reached
   printf("test1\n");
-  while(!inFile.eof()){
-    inFile >> word;
-  printf("test12\n");
-  for(int i=0; i < word.length(); ++i){
-    printf("test13\n");
-    if(isdigit(word[i]))cout << word[i]<<" ";
-  }
+
+  while(!readText.eof()){
+
+
+    readText >> word;
+
+    printf("test12\n");
+
+      for(int i=0; i < word.length(); ++i){
+
+        printf("test13\n");
+
+        if(isdigit(word[i]))cout << word[i]<<" ";
+
+    // cout<< word <<endl;
+      }
   cout<<"\n";
   return 0;
-  //   inFile >> item;
+  //   readText >> item;
   //   count++;
   //   cout<<item<<endl;
   }
 
   // cout << count << " items found."<<endl;
-  inFile.close();
+  readText.close();
 
 
 
