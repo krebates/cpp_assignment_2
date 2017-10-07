@@ -15,8 +15,18 @@ int main(int argc, char* argv[]) {
   int pipe_file_desc[2];
   int process_id;
   char buffer[20];
-  int x = atoi(argv[2]);
+  // int inputValue = atoi(argv[2]);
   string word;
+
+  //creates 'x' from value provided in command line
+  int a;
+  a = strtol(argv[3], NULL, 0);
+  cout << a ;
+
+
+  //checks input value
+
+
 
   //error message creating the pipe
   if (pipe(pipe_file_desc) == -1){
@@ -25,7 +35,10 @@ int main(int argc, char* argv[]) {
   }
 
   //creating x-1 forks
-
+  printf("hello\n");
+  for ( int x = 0; x < a; x++ ) {
+    printf("hello");
+  }
 
   //opening up the file to read
   ifstream readText;
