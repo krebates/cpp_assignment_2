@@ -15,18 +15,12 @@ int main(int argc, char* argv[]) {
   int pipe_file_desc[2];
   int process_id;
   char buffer[20];
-  // int inputValue = atoi(argv[2]);
   string word;
 
-  //creates 'x' from value provided in command line
+  //creates 'x' from value provided in command line, uses 0 for unvalid input
   int a;
   a = strtol(argv[3], NULL, 0);
   cout << a ;
-
-
-  //checks input value
-
-
 
   //error message creating the pipe
   if (pipe(pipe_file_desc) == -1){
