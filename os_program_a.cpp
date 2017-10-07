@@ -5,28 +5,35 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstdlib>
 
 using namespace std;
 
 int main(int argc, char* argv[]) {
 
+  //variables
   int pipe_file_desc[2];
   int process_id;
   char buffer[20];
+  int x = atoi(argv[2]);
+  string word;
 
-  if (pipe(pipe_file_desc) == -1)
-  {
+  //error message creating the pipe
+  if (pipe(pipe_file_desc) == -1){
     perror ("error creating");
     exit(0);
   }
 
+  //creating x-1 forks
+
+
+  //opening up the file to read
   ifstream readText;
   readText.open(argv[1]);
 
-  // string item;
-  // int count = 0;
-  string word;
-  // string line;
+
+
+
 
   while(!readText.eof()){
     while(getline(readText, word))
