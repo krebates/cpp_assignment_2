@@ -17,18 +17,28 @@ int main(int argc, char* argv[]) {
   ifstream inFile;
   inFile.open(argv[1]);
 
-  string item;
-  int count = 0;
+  // string item;
+  // int count = 0;
+  string word;
 
   //Read a file until the end is reached
+  printf("test1\n");
   while(!inFile.eof()){
-    inFile >> item;
-    count++;
-    cout<<item<<endl;
+    inFile >> word;
+  printf("test12\n");
+  for(int i=0; i < word.length(); ++i){
+    printf("test13\n");
+    if(isdigit(word[i]))cout << word[i]<<" ";
+  }
+  cout<<"\n";
+  return 0;
+  //   inFile >> item;
+  //   count++;
+  //   cout<<item<<endl;
   }
 
-  cout << count << " items found."<<endl;
-inFile.close();
+  // cout << count << " items found."<<endl;
+  inFile.close();
 
 
 
