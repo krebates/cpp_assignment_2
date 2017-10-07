@@ -20,22 +20,25 @@ int main(int argc, char* argv[]) {
   // string item;
   // int count = 0;
   string word;
+  // string line;
+
   printf("test1\n");
 
   while(!readText.eof()){
+    while(getline(readText, word))
+      {
+      readText >> word;
+
+      printf("test12\n");
+
+        for(int i=0; i < word.length(); ++i){
+
+          if(isdigit(word[i]))cout << word[i];
+            if(!isdigit(word[i]))cout <<" ";
 
 
-    readText >> word;
-
-    printf("test12\n");
-
-      for(int i=0; i < word.length(); ++i){
-
-        printf("test13\n");
-
-        if(isdigit(word[i]))cout << word[i]<<" ";
-
-    // cout<< word <<endl;
+      // cout<< word <<endl;
+        }
       }
   cout<<"\n";
   return 0;
