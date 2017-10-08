@@ -32,31 +32,43 @@ int main(int argc, char* argv[]) {
     exit(0);
   }
 
-  //Creates x-1 forks
-  for ( int x = 0; x < a; x++ ) {
-    process_id = fork();
-  }
+  // //Creates x-1 forks
+  // for ( int x = 0; x < a; x++ ) {
+  //   process_id = fork();
+  // }
 
   //Opens up the file to read
   ifstream readText;
   readText.open(argv[1]);
 
 cout << "Hello World";
+  // while(!readText.eof()){
+  //   while(getline(readText, word))
+  //     {
+  //     readText >> word;
+  //     for(int i=0; i < word.length(); ++i){
+  //       if(isdigit(word[i]))cout << word[i];
+  //         //add value here to variable to be able to change it
+  //         // readValue << word[i];
+  //         if(!isdigit(word[i]))cout << word[i];
+  //         // cout << readValue;
+
+
+  //       }
+  //     }
+  // cout<<"\n";
+  // }
+
   while(!readText.eof()){
     while(getline(readText, word))
       {
-      readText >> word;
-      for(int i=0; i < word.length(); ++i){
-        if(isdigit(word[i]))cout << word[i];
-          //add value here to variable to be able to change it
-          // readValue << word[i];
+        readText >> word;
+        for(int i=0; i < word.length(); ++i){
           if(!isdigit(word[i]))cout << word[i];
-          // cout << readValue;
-
-
         }
+        // cout << word[i];
       }
-  cout<<"\n";
+    cout<<"\n";
   }
 
   // process_id = fork();
