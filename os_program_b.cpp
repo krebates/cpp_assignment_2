@@ -16,12 +16,29 @@ int main(int argc, char **argv)
     int process_id;
     int readValue;
     int counter = 0;
+    string word;
+
 
   //Creates process (a) and value (b) provided in command line,
   //uses 0 for unvalid input
   int a, b;
   a = strtol(argv[2], NULL, 0);
   b = strtol(argv[3], NULL, 0);
+
+    ifstream readText;
+    readText.open(argv[1]);
+
+  while(!readText.eof()){
+    while(getline(readText, word))
+      {
+        readText >> word;
+        for(int i=0; i < word.length(); ++i){
+          if(!isdigit(word[i]))cout << word[i];
+        }
+        // cout << word[i];
+      }
+    cout<<"\n";
+  }
 
   pid_t pid = fork();
 
