@@ -45,6 +45,27 @@ int main ( int argc, char *argv[] )
     // }
 
 
+// do{}while();
+
+// //do while loop for press to continue
+do{
+
+    while(!readText.eof()){
+        // if (getline(std::cin,line)) {
+            readText >> item;
+            for(int i=0; i < item.length(); ++i){
+                if(isdigit(item[i]))
+                    // name +=aname[i];
+                    newWord += item[i];
+                if(!isdigit(item[i]))cout << item[i] ;
+
+
+            }
+        // }
+    }
+   cout << "\nPress a key to continue...";
+ } while (getchar());
+
 
     for(i = 0; i < numProcesses; i++) {
         ++count;
