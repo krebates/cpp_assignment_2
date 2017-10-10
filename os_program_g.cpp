@@ -30,15 +30,14 @@ int main ( int argc, char *argv[] )
     close(pipe_file_desc_2[WRITE]);        //close write end, read, and then close read end
     read(pipe_file_desc_2[READ],&readValue,sizeof(readValue));
     close(pipe_file_desc_2[READ]);
-  }
-  else { /* child process */
-    close(pipe_file_desc_2[READ]);       //close read end, write and then close write end
-    writeValue+=valueToAdd;
-    write(pipe_file_desc_2[WRITE],&writeValue,sizeof(writeValue));
-    printf("child: writeValue value : %d\n", writeValue);
-    close(pipe_file_desc_2[WRITE]);
-
-  }
+      }
+      else { /* child process */
+        close(pipe_file_desc_2[READ]);       //close read end, write and then close write end
+        writeValue+=valueToAdd;
+        write(pipe_file_desc_2[WRITE],&writeValue,sizeof(writeValue));
+        printf("child: writeValue value : %d\n", writeValue);
+        close(pipe_file_desc_2[WRITE]);
+      }
 
     }
 
