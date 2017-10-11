@@ -9,21 +9,21 @@ int main(){
   ifstream readText;
   readText.open("test2.txt");
 
-  string item, word, newNumber;
+  string item, line, newNumber;
 
   do {
    int count = 0;
 
    for (int i = 0; i < 3; ++i){
-    getline(readText, word);
+    getline(readText, line);
       {
-        readText >> word;
-        for(int i=0; i < word.length(); ++i){
-          if(isdigit(word[i]))
-              newNumber += word[i];
-          else if(!isdigit(word[i]))
-              cout << word[i];
-          else if(isspace(word[i]))
+        readText >> line;
+        for(int i=0; i < line.length(); ++i){
+          if(isdigit(line[i]))
+              newNumber += line[i];
+          else if(!isdigit(line[i]))
+              cout << line[i];
+          else if(isspace(line[i]))
               cout << " ";
         }
       }
@@ -33,15 +33,15 @@ int main(){
 
    // for (int i = 0; i < 3; ++i){
    //  while(!readText.eof()){
-   //    while(getline(readText, word))
+   //    while(getline(readText, line))
    //      {
-   //      readText >> word;
-   //      for(int i=0; i < word.length(); ++i){
-   //        if(isdigit(word[i]))
-   //            newNumber += word[i];
-   //        else if(!isdigit(word[i]))
-   //            cout << word[i];
-   //        else if(isspace(word[i]))
+   //      readText >> line;
+   //      for(int i=0; i < line.length(); ++i){
+   //        if(isdigit(line[i]))
+   //            newNumber += line[i];
+   //        else if(!isdigit(line[i]))
+   //            cout << line[i];
+   //        else if(isspace(line[i]))
    //            cout << " ";
    //        }
    //      }
