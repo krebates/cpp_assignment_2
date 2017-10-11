@@ -9,21 +9,66 @@
 
 using namespace std;
 
+int pipe_function(int valueGiven, int numProcesses, int valueToAdd){
+  int pid;
+  int pipe_file_desc_2[2];
+
+  for(int i = 0; i < numProcesses; i++)
+  {
+    if (pipe(pipe_file_desc_2) == -1)
+    {
+      perror("error creating pipe");
+      exit(0);
+    }
+
+    pid = fork();
+
+    if(pid < 0) {
+      printf("Error");
+      exit(0);
+    }
+
+    if (pid > 0) { /* parent process */
+      wait(0);
+      close(pipe_file_desc_2[WRITE]);
+      read(pipe_file_desc_2[READ],&valueGiven,sizeof(valueGiven));
+      close(pipe_file_desc_2[READ]);
+      exit(0);
+    }
+
+    else { /* child process */
+        close(pipe_file_desc_2[READ]);
+        valueGiven+=valueToAdd;
+        write(pipe_file_desc_2[WRITE],&valueGiven,sizeof(valueGiven));
+        close(pipe_file_desc_2[WRITE]);
+    }
+  }
+  return valueGiven;
+}
+
+
+
 int main ( int argc, char *argv[] )
 {
+
+ // int a = atoi(argv[3]);
+ // int b = atoi(argv[2]);
+ // int x = pipe_function(50, 6, 5 );
+  int x = pipe_function(50, atoi(argv[3]), atoi(argv[2]) );
+  cout << x;
+  // cout << argv[3];
   //variables
-  int i, pid;
-  int testValue = 3;
-  int pipe_file_desc[2];
-  int pipe_file_desc_2[2];
-  int valueToAdd = atoi(argv[3]);
-  int a = atoi(argv[2]);
-  int numProcesses = atoi(argv[2]);
-  char buffer[20];
-  int writeValue = 50;
-  int readValue;
-  string item, newWord, word, line;
-  int count = 0;
+  // int testValue = 3;
+  // int pipe_file_desc[2];
+
+  // int valueToAdd = atoi(argv[3]);
+  // int a = atoi(argv[2]);
+  // int numProcesses = atoi(argv[2]);
+
+
+  // int readValue;
+  // string item, newWord, word, line;
+  // int count = 0;
 
   // //Opens up the file to read
   // char b[73] = "";
@@ -44,31 +89,6 @@ int main ( int argc, char *argv[] )
   //     // do-whatever
   // }
 
-  for(i = 0; i < numProcesses; i++) {
-    if (pipe(pipe_file_desc) == -1)
-    {
-      perror("error creating pipe");
-      exit(0);
-    }
+  // int pipe_function(int valueGiven, int numProcesses, int valueToAdd){
 
-    pid = fork();
-    if(pid < 0) {
-      printf("Error");
-      exit(0);
-    }
-    if (pid > 0) { /* parent process */
-      wait(0);
-      close(pipe_file_desc_2[WRITE]);
-      read(pipe_file_desc_2[READ],&readValue,sizeof(readValue));
-      close(pipe_file_desc_2[READ]);
-      exit(0);
-    }
-    else { /* child process */
-        close(pipe_file_desc_2[READ]);
-        writeValue+=valueToAdd;
-        write(pipe_file_desc_2[WRITE],&writeValue,sizeof(writeValue));
-        close(pipe_file_desc_2[WRITE]);
-    }
-  }
- cout << writeValue << endl;
 }
