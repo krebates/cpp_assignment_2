@@ -45,6 +45,12 @@ int main ( int argc, char *argv[] )
   // }
 
   for(i = 0; i < numProcesses; i++) {
+    if (pipe(pipe_file_desc) == -1)
+    {
+      perror("error creating pipe");
+      exit(0);
+    }
+
     pid = fork();
     if(pid < 0) {
       printf("Error");
