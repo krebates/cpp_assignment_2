@@ -14,9 +14,9 @@ int main(){
   do {
    int count = 0;
 
-   for (int i = 0; i < 3; ++i){
+
     getline(readText, line);
-      {
+      for (int i = 0; i < 3; ++i){
         readText >> line;
         for(int i=0; i < line.length(); ++i){
           if(isdigit(line[i]))
@@ -26,7 +26,7 @@ int main(){
           else if(isspace(line[i]))
               cout << " ";
         }
-      }
+
     cout<<"\n";
       }
 
