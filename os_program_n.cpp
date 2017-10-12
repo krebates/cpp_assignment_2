@@ -111,28 +111,44 @@ int main ( int argc, char *argv[] )
     //   return 0;
     // }
 
+    string digits = "";
+    string text = "";
+
+
     while(!readText.eof())
     {
       // while(getline(readText, item))
       // {
       readText >> item;
-      cout<< item <<"\n";
-      // cout << item <<endl;
-      // for(int i=0; i < item.length(); ++i){
-        // if(isdigit(item[i]))
-        //   newitem += item[i];
-        // else if(!isdigit(item[i]))
-        //     cout << item[i];
-        // else if(isspace(item[i]))
-        //     cout << " ";
 
-        // }
-      // }
+
+
+      for(int i=0; i < item.length(); ++i){
+        if (isdigit(item[i]) && !isdigit(item[i+1])){
+          digits += item[i];
+          int digit = atoi(digits.c_str());
+          int changeddigits = pipe_function(item[i], atoi(argv[3]), atoi(argv[2]) );
+          string stringdigit = to_string(changeddigits);
+          text += stringdigit;
+          // cout << stringdigit <<endl;
+          // cout << digit << endl;
+        }
+        else if (isdigit(item[i])){
+          digits += item[i];
+        }
+        else if (isspace(item[i])){
+          text += " ";
+        }
+        else
+          text += item[i];
+        }
+      }
+cout << text << endl;
 
   //    int x = pipe_function(50, atoi(argv[3]), atoi(argv[2]) );
   // cout << x;
 
-    }
+    // }
 
     // while(!readText.eof()){
     //   while(getline(readText, item))
