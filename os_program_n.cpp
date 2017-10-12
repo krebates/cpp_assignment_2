@@ -13,7 +13,7 @@ int pipe_function(int valueGiven, int numProcesses, int valueToAdd){
   int pid;
   int pipe_file_desc_2[2];
 
-  for(int i = 0; i < numProcesses; i++)
+  for(int i = 0; i < numProcesses - 1; i++)
   {
     if (pipe(pipe_file_desc_2) == -1)
     {
@@ -46,31 +46,22 @@ int pipe_function(int valueGiven, int numProcesses, int valueToAdd){
   return valueGiven;
 }
 
-
-
 int main ( int argc, char *argv[] )
 {
+  string item, newitem;
 
- // int a = atoi(argv[3]);
- // int b = atoi(argv[2]);
- // int x = pipe_function(50, 6, 5 );
-  int x = pipe_function(50, atoi(argv[3]), atoi(argv[2]) );
-  cout << x;
-  // cout << argv[3];
-  //variables
-  // int testValue = 3;
-  // int pipe_file_desc[2];
 
-  // int valueToAdd = atoi(argv[3]);
-  // int a = atoi(argv[2]);
-  // int numProcesses = atoi(argv[2]);
+  // int x = pipe_function(50, atoi(argv[3]), atoi(argv[2]) );
+  // cout << x;
 
 
   // int readValue;
-  // string item, newWord, word, line;
+  // string item, newitem, item, line;
   // int count = 0;
 
-  // //Opens up the file to read
+
+  // //---------
+  // //Opens up the file to read for 72 characters
   // char b[73] = "";
   // ifstream readText;
   // ifstream f(argv[1]);
@@ -79,6 +70,7 @@ int main ( int argc, char *argv[] )
   //   f.read(b, sizeof(b) - 1); // Read one less that sizeof(b) to ensure null
   //   cout << b;
   // // }
+  // //---------
 
   // int num_lines = 0;
   // std::string input;
@@ -89,6 +81,34 @@ int main ( int argc, char *argv[] )
   //     // do-whatever
   // }
 
-  // int pipe_function(int valueGiven, int numProcesses, int valueToAdd){
+    //Opens up the file to read
+      ifstream readText;
+      readText.open(argv[1]);
 
+     while(!readText.eof()){
+    while(getline(readText, item))
+      {
+      readText >> item;
+      for(int i=0; i < item.length(); ++i){
+        if(isdigit(item[i]))
+          //add value here to variable to be able to change it
+          // readValue << item[i];
+            // name += item[i];
+            newitem += item[i];
+            // else{
+            //     if (newNumber.length() == 0)cout << item[i];
+            // }
+        else if(!isdigit(item[i]))
+            cout << item[i];
+        else if(isspace(item[i]))
+            cout << " ";
+          // if(!isdigit(item[i]))cout << item[i];
+          // cout << readValue;
+
+
+        }
+      }
+  cout<<"\n";
+  return 0;
+  }
 }
