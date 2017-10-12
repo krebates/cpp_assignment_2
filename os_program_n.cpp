@@ -77,36 +77,36 @@ int main ( int argc, char *argv[] )
       readText.open(argv[1]);
 
 
-    string nums = "";
-    string text = "";
 
+    string text = "";
 
     while(!readText.eof())
     {
-
+    string nums = "";
       readText >> item;
-
-
 
       for(int i=0; i < item.length(); ++i){
         if (isdigit(item[i]) && !isdigit(item[i+1])){
           nums += item[i];
           int num = atoi(nums.c_str());
-          int changednums = pipe_function(item[i], atoi(argv[3]), atoi(argv[2]) );
+          int changednums = pipe_function(num, atoi(argv[3]), atoi(argv[2]) );
           string stringnum = to_string(changednums);
           text += stringnum;
+         nums = "";
         }
         else if (isdigit(item[i])){
           nums += item[i];
+
         }
         else if (isspace(item[i])){
           text += " ";
         }
         else
           text += item[i];
+
         }
       }
-cout << text << endl;
+    cout << text << endl;
 
 
   return 0;
