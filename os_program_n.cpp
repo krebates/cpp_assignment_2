@@ -51,15 +51,6 @@ int main ( int argc, char *argv[] )
   string item, newitem;
 
 
-  // int x = pipe_function(50, atoi(argv[3]), atoi(argv[2]) );
-  // cout << x;
-
-
-  // int readValue;
-  // string item, newitem, item, line;
-  // int count = 0;
-
-
   // //---------
   // //Opens up the file to read for 72 characters
   // char b[73] = "";
@@ -85,56 +76,28 @@ int main ( int argc, char *argv[] )
       ifstream readText;
       readText.open(argv[1]);
 
-    // while(!readText.eof())
-    // {
-    //   while(getline(readText, item))
-    //   {
-    //   readText >> item;
-    //   for(int i=0; i < item.length(); ++i){
-    //     if(isdigit(item[i]))
-    //       //add value here to variable to be able to change it
-    //       // readValue << item[i];
-    //       // name += item[i];
-    //       newitem += item[i];
-    //       // else{
-    //       //     if (newNumber.length() == 0)cout << item[i];
-    //       // }
-    //     else if(!isdigit(item[i]))
-    //         cout << item[i];
-    //     else if(isspace(item[i]))
-    //         cout << " ";
-    //       // if(!isdigit(item[i]))cout << item[i];
-    //       // cout << readValue;
-    //     }
-    //   }
-    //   cout<< newitem <<"\n";
-    //   return 0;
-    // }
 
-    string digits = "";
+    string nums = "";
     string text = "";
 
 
     while(!readText.eof())
     {
-      // while(getline(readText, item))
-      // {
+
       readText >> item;
 
 
 
       for(int i=0; i < item.length(); ++i){
         if (isdigit(item[i]) && !isdigit(item[i+1])){
-          digits += item[i];
-          int digit = atoi(digits.c_str());
-          int changeddigits = pipe_function(item[i], atoi(argv[3]), atoi(argv[2]) );
-          string stringdigit = to_string(changeddigits);
-          text += stringdigit;
-          // cout << stringdigit <<endl;
-          // cout << digit << endl;
+          nums += item[i];
+          int num = atoi(nums.c_str());
+          int changednums = pipe_function(item[i], atoi(argv[3]), atoi(argv[2]) );
+          string stringnum = to_string(changednums);
+          text += stringnum;
         }
         else if (isdigit(item[i])){
-          digits += item[i];
+          nums += item[i];
         }
         else if (isspace(item[i])){
           text += " ";
@@ -145,32 +108,6 @@ int main ( int argc, char *argv[] )
       }
 cout << text << endl;
 
-  //    int x = pipe_function(50, atoi(argv[3]), atoi(argv[2]) );
-  // cout << x;
 
-    // }
-
-    // while(!readText.eof()){
-    //   while(getline(readText, item))
-    //     {
-    //       readText >> item;
-    //       char arr[100] = ""; // An array of strings holding all the digits in the text.
-    //       int arrIndex = 0; // To keep track of what index we are in for the arr.
-    //         for(int i=0; i < item.length(); i++)
-    //         {
-    //           if(isdigit(item[i]) == true)
-    //           { //Only want the digits from the text file.
-    //             arr[arrIndex] = item[i]; // Storing the digits from the text into the arr.
-    //             cout << "This is the digit that got extracted: " << arr[arrIndex] << endl;
-    //             arrIndex++; // Incrementing to the next open position of arr.
-    //           }
-    //         }
-    //     for(int i = 0; i < arrIndex; i++){ // Printing all of the digits in the array of strings. Once                 the chunks of numbers are seperated the "atoi" function c                an be used to turn the strings into digits.
-    //       cout << "These are the numbers from the text : " << arr[i] << endl;
-    //     }
-    //       // cout << item[i];
-    //     }
-    //   cout<<"\n";
-    // }
   return 0;
 }
