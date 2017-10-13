@@ -62,45 +62,46 @@ int main ( int argc, char *argv[] )
 
     string text = "";
 
-    while(!readText.eof())
-    {
-      string nums = "";
-        readText >> item;
-        for(int i=0; i < item.length(); ++i)
+    while(!readText.eof()){
+      while(getline(readText, word))
         {
-          if (isdigit(item[i]) && !isdigit(item[i+1])){
-            nums += item[i];
-            int num = atoi(nums.c_str());
-            int changednums = pipe_function(num, atoi(argv[2]), atoi(argv[3]) );
-            string stringnum = to_string(changednums);
-            text += stringnum;
-           nums = "";
-          }
-          else if (isdigit(item[i])){
-            nums += item[i];
 
+        string nums = "";
+          readText >> item;
+          for(int i=0; i < item.length(); ++i)
+          {
+            if (isdigit(item[i]) && !isdigit(item[i+1])){
+              nums += item[i];
+              int num = atoi(nums.c_str());
+              int changednums = pipe_function(num, atoi(argv[2]), atoi(argv[3]) );
+              string stringnum = to_string(changednums);
+              text += stringnum;
+             nums = "";
+            }
+            else if (isdigit(item[i])){
+              nums += item[i];
+
+            }
+            else
+              text += item[i];
           }
-          else
-            text += item[i];
 
         }
-          text += " ";
-      }
+      cout << text << endl;
 
-    cout << text << endl;
-
-  // while(text.size() > 0)
-  // {
-  //   position = count 72
-  //   if(text.at(position) == " ")
-  //   {
-  //     text = text.substring;
-  //   }
-  //   else{
-  //     temp = substring;
-  //     position = temp.found_last_of(" ")
-  //   }
-  // }
+  while(text.size() > 0)
+  {
+    position = count 72
+    cout << position<< endl;
+    if(text.at(position) == " ")
+    {
+      text = text.substring;
+    }
+    else{
+      temp = substring;
+      position = temp.found_last_of(" ")
+    }
+  }
 
   return 0;
 }
